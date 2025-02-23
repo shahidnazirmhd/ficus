@@ -13,7 +13,8 @@ import CryptoJS from "crypto-js";
 export class ApiService {
 
   authStatuschanged = new EventEmitter<void>();
-  private static BASE_URL = 'http://localhost:8088/api';
+  //private static BASE_URL = 'http://localhost:8088/api';
+  private static BASE_URL = 'https://psychic-parakeet-p6xq69v67pgh9r69-8088.app.github.dev/api';
   private static ENCRYPTION_KEY = "phegon-dev-inventory";
 
 
