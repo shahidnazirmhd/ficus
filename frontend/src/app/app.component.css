@@ -17,14 +17,16 @@
     transition: all 0.3s ease;
     }
      
-    .ims {
+    .logo_ficus_i {
     font-size: 34px;
     margin-left: 20%;
     color: #17a2b8;
-    font-weight: bold;
+    font-weight: lighter;
     padding: 0;
     margin-bottom: 0;
-    font-weight: 900;
+    }
+    .logo_ficus_i span{
+        color: #f7f8f8;
     }
      
     .nav-links {

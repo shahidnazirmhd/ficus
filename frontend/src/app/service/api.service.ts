@@ -13,7 +13,7 @@ import CryptoJS from "crypto-js";
 export class ApiService {
 
   authStatuschanged = new EventEmitter<void>();
-  private static BASE_URL = 'http://localhost:5050/api';
+  private static BASE_URL = 'http://localhost:8088/api';
   private static ENCRYPTION_KEY = "phegon-dev-inventory";
 
 

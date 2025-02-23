@@ -13,8 +13,11 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE")
-                        .allowedOrigins("*");
+                        .allowedMethods("GET", "POST", "PUT", "DELETE") // Allow all HTTP methods
+                        .allowedOrigins("http://localhost:8080") // Allow all origins
+                        .allowCredentials(true) // Allow credentials like cookies or tokens
+                        .allowedHeaders("*") // Allow all headers
+                        .exposedHeaders("*"); // Expose all response headers
             }
         };
     }

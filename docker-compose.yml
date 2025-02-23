@@ -1,0 +1,64 @@
+services:
+  pgadmin:
+    image: dpage/pgadmin4:8.10
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: passpgadmin
+      PGADMIN_CONFIG_WTF_CSRF_HEADERS: '["Referer", "Origin"]'
+      PGADMIN_CONFIG_WTF_CSRF_ENABLED: 'False'
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    ports:
+      - 5050:80
+    networks:
+      - spring-app  
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16.4
+    container_name: ficusi-db-master
+    restart: always
+    environment:
+      POSTGRES_USER: sa
+      POSTGRES_PASSWORD: passpgsql
+      POSTGRES_DB: inventory_db
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - spring-app
+
+  ficusi-api:
+    container_name: ficusi-api
+    image: ficusi/ficus-api:1.0.0
+    ports:
+      - 8088:8088
+    networks:
+      - spring-app
+    depends_on:
+      - db
+
+  ficusi-ui:
+    container_name: ficusi-ui
+    image: ficusi/ficus-ui:1.0.0
+    ports:
+      - 8080:80
+    networks:
+      - spring-app
+    depends_on:
+      - ficusi-api
+
+volumes:
+  pgadmin-data:
+    driver: local
+  pg-data:
+    driver: local
+
+networks:
+  spring-app:
+    driver: bridge
